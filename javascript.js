@@ -1,6 +1,6 @@
 function getComputerChoice()
 {
-    let choices = ["rock", "paper", "scissors"];
+    const choices = ["rock", "paper", "scissors"];
     let random = Math.floor(Math.random() * choices.length);
 
     return choices[random];
@@ -109,7 +109,7 @@ function playGame()
     console.log("Final Score");
     console.log("User: " + userScore);
     console.log("Computer: " + compScore);
-
+    alert(`Final Score: User [${userScore}] \t Computer [${compScore}]`);
 }
 
 playGame();
