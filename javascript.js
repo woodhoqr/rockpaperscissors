@@ -1,6 +1,6 @@
 function getComputerChoice()
 {
-    let choices = ["Rock", "Paper", "Scissors"];
+    let choices = ["rock", "paper", "scissors"];
     let random = Math.floor(Math.random() * choices.length);
 
     return choices[random];
@@ -9,31 +9,109 @@ function getComputerChoice()
 function playRound (userInput, computerInput)
 {
     let verdict = " ";
+    let uInLower = userInput.toLowerCase();
 
-    if (checkDraw(userInput, computerInput))
+    if (checkDraw(uInLower, computerInput))
     {
-        verdict = `${userInput} & ${computerInput} = a Draw! Play another round!!`;
+        return verdict = `Draw! ${userInput} = ${computerInput}! Play another round!!`;
     }
-    /*
-        if userInput == rock
-            if computerInput == rock, draw//Done
-            else if computerInput == scissors, user wins
-            else if computerInput == paper, user loses
 
-        if userInput == paper
-            if computerInput == paper, draw//Done
-            else if computerInput == rock, user wins
-            else if computerInput == scissors, user loses
+    if (uInLower == "rock")
+        if (computerInput == "scissors")
+        {
+            return verdict = `Winner, winner, chicken dinner!!! ${userInput} beats ${computerInput}! Let's play another round!!`;
+        }
 
-        if userInput == scissors
-            if computerInput == scissors, draw//Done
-            else if computerInput == paper, user wins
-            else if computerInput == rock, user loses
+        else if (computerInput == "paper")
+        {
+            return verdict = `Losses happen, ${computerInput} beats ${userInput}! Let's go again!!`;
+        }
 
-    */
+    if (uInLower == "paper")
+        if (computerInput == "rock")
+        {
+            return verdict = `Winner, winner, chicken dinner!!! ${userInput} beats ${computerInput}! Let's play another round!!`;
+        }
+
+        else if (computerInput == "scissors")
+        {
+            return verdict = `Losses happen, ${computerInput} beats ${userInput}! Let's go again!!`;
+        }
+
+    if (uInLower == "scissors")
+        if (computerInput == "paper")
+        {
+            return verdict = `Winner, winner, chicken dinner!!! ${userInput} beats ${computerInput}! Let's play another round!!`;
+        }
+
+        else if (computerInput == "rock")
+        {
+            return verdict = `Losses happen, ${computerInput} beats ${userInput}! Let's go again!!`;
+        }
 }
 
 function checkDraw(userInput, computerInput)
 {
-    return (userInput.toLowercase() == computerInput.toLowercase());
+    return (userInput.toLowerCase() == computerInput.toLowerCase());
 }
+
+function checkWinner(verdict)
+{
+    return (verdict.charAt(0) == "W");
+}
+
+function playGame()
+{
+    let userI = "";
+    let verdict = "";
+    let userScore = 0;
+    let compScore = 0;
+
+ 
+    for (let i = 0; i < 5; i++)
+    {
+        userI = prompt("Choose your fighter: ");
+        verdict = playRound(userI, getComputerChoice());
+        if (verdict.charAt(0) == "D")
+        {
+            console.log(verdict);
+        }
+        else
+        {
+            if (checkWinner(verdict))
+            {
+                userScore++;
+            }
+            else
+            {
+                compScore++;
+            }
+
+           console.log(verdict);
+        }
+    }
+
+    if (userScore == compScore)
+    {
+        console.log("What a CAT...or is that tik tok toe?");
+    }
+
+    else if (userScore > compScore)
+    {
+        console.log("Hot stuff!! You showed that computer what's WHAT");
+    }
+
+    else 
+    {
+        console.log("Better luck next time, cap'n!! The computer wins this one");
+    }
+
+    console.log("Final Score");
+    console.log("User: " + userScore);
+    console.log("Computer: " + compScore);
+
+}
+
+playGame();
+
+
